@@ -1,32 +1,34 @@
-using app_tramites.Models;
-using Microsoft.AspNetCore.Mvc;
+#region Using
+
 using System.Diagnostics;
+using app_tramites.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+#endregion
 
 namespace app_tramites.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        public IActionResult Index() => View();
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        [Route("dashboard-marketing")]
+        public IActionResult DashboardMarketing() => View();
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        [Route("dashboard-social")]
+        public IActionResult SocialWall() => View();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        public IActionResult Inbox() => View();
 
+        public IActionResult Chat() => View();
+
+        public IActionResult Widgets() => View();
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error() => View(new ErrorViewModel
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+        });
     }
 }

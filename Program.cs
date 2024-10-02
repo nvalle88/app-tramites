@@ -1,4 +1,5 @@
 using app_tramites.Data;
+using app_tramites.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,8 @@ namespace app_tramites
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddTransient<IEmailSender, EmailSender>();
 
             var app = builder.Build();
 
