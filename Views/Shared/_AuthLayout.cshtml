@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-us" id="extr-page">
 <head>
     <meta charset="utf-8" />
 
@@ -33,42 +33,18 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 </head>
-<body class="smart-style-1">
-    @{ await Html.RenderPartialAsync("_Header"); }
-    @{ await Html.RenderPartialAsync("_Navigation"); }
+<body class="animated fadeInDown">
+    @{ await Html.RenderPartialAsync("_AuthHeader"); }
     <!-- MAIN PANEL -->
     <div id="main" role="main">
-        @{ await Html.RenderPartialAsync("_Ribbon"); }
         <!-- MAIN CONTENT -->
-        <div id="content">
+        <div id="content" class="container">
             @RenderBody()
         </div>
         <!-- END MAIN CONTENT -->
     </div>
     <!-- END MAIN PANEL -->
-    @{ await Html.RenderPartialAsync("_Footer"); }
-    @{ await Html.RenderPartialAsync("_Shortcuts"); }
     @{ await Html.RenderPartialAsync("_Scripts"); }
-    <environment include="Development">
-        <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
-        <script data-pace-options='{ "restartOnRequestAfter": true }' src="~/js/plugin/pace/pace.js"></script>
-
-        <!-- Demo purpose only -->
-        <script src="~/js/demo.js"></script>
-    </environment>
-    <environment exclude="Development">
-        <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
-        <script data-pace-options='{ "restartOnRequestAfter": true }' src="~/js/plugin/pace/pace.min.js"></script>
-
-        <!-- Demo purpose only -->
-        <script src="~/js/demo.min.js" asp-append-version="true"></script>
-    </environment>
-    <script>
-        $(function () {
-            // DO NOT REMOVE : GLOBAL FUNCTIONS!
-            pageSetUp();
-        });
-    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
