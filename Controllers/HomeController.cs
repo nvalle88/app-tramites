@@ -12,7 +12,12 @@ namespace app_tramites.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        public IActionResult Index() => View();
+        [Authorize]
+        public IActionResult Index() 
+        {
+            return View();
+        }
+        
 
         [Route("dashboard-marketing")]
         public IActionResult DashboardMarketing() => View();

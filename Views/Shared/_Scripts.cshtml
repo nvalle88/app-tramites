@@ -99,6 +99,7 @@
     <!-- IMPORTANT: APP CONFIG -->
     <script src="~/js/app.config.min.js"></script>
 
+    <script src="~/js/waitMe/waitMe.min.js"></script>
     <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
     <script src="~/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>
 
@@ -130,6 +131,16 @@
     <!-- Voice command : plugin -->
     <script src="~/js/speech/voicecommand.min.js"></script>
 
+    <script src="~/js/app/site.js"></script>
+    <script>
+        $(document).ready(function () {
+            pageSetUp();
+            drawBreadCrumb();
+            Gestionar_Msg();
+            initLoadingForm();
+            $.sound_path = "@Url.Content("~/sound/")";
+        });
+    </script>
 
     <!-- SmartChat UI : plugin -->
     <script src="~/js/smart-chat-ui/smart.chat.ui.min.js"></script>

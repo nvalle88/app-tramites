@@ -17,8 +17,20 @@ namespace app_tramites
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                // Especifica la ruta personalizada de inicio de sesión
+                options.LoginPath = "/Account/Login";
+            });
+
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                // Other settings can go here
+                options.ClaimsIdentity.UserIdClaimType = "/Account/Login";
+            });
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddTransient<IEmailSender, EmailSender>();
@@ -41,6 +53,7 @@ namespace app_tramites
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
